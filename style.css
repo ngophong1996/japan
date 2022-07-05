@@ -1,0 +1,216 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+
+}
+.logo{
+
+}
+section
+{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/japan1.jpg');
+    transition: 0.5s;
+    background-size: cover;
+    background-position: center;
+    background-position-y: 100%;
+}
+
+.bg::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0) 100%);
+}
+header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .logo{
+    position: relative;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2em;
+}
+header .nav{
+    position: relative;
+    display: flex;
+}
+header .nav li{
+    list-style: none;
+}
+header .nav li a{
+    display: inline-block;
+    color: #fff;
+    font-weight: 400;
+    margin-left: 10px;
+    padding: 8px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+}
+header .nav li a.active,
+header .nav li a:hover
+{
+    background: #fff;
+    color: #333;
+}
+.content{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content .textBox{
+    position: relative;
+    max-width: 600px;
+}
+.content .imgBox{
+    position: relative;
+    z-index: 1;
+    width: 600px;
+    display: flex;
+    justify-content: flex-end;
+}
+.content .imgBox img{
+    max-width: 400px;
+}
+.content .textBox h2{
+    color: #fff;
+    font-size: 4em;
+    line-height: 1.2em;
+    font-weight: 700;
+}
+.content .textBox p{
+    color: #fff;
+    margin-top: 20px;
+}
+.content .textBox a{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background: #fff;
+    color: #333;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+/*---------------------------------------*/
+.thumb{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    display: flex;
+}
+.thumb li{
+    width: 250px;
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 0.5s;
+    height: 100px;
+    opacity: 0.3;
+}
+.thumb li.active{
+    opacity: 0.8;
+}
+
+.thumb li.active .link{ 
+    opacity: 1;
+}
+.thumb li img{
+    max-width: 70px;
+}
+.thumb .item .smallImage{
+    padding-right: 10px;
+}
+.thumb .item{
+    display: flex;
+    color: #fff;
+}
+.nameCity p{
+    font-size: 11px;
+}
+.nameCity{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.link{
+    position: absolute;
+   /* top: -205px;*/
+   margin-left: 108px;
+    margin-right: 95px;
+    margin-top: 130px;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 1);
+    opacity: 0;
+    font-weight: 800;
+    transition: 0.5s;
+}
+.link a{
+    display: inline-block;
+    margin-top: 20px;
+    padding: 13px 30px;
+    background: #BC002D;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+/*--------------------------------------------*/
+.sci{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.sci li{
+    list-style: none;
+}
+.sci li a{
+    display: inline-block;
+    margin: 5px 0;
+    transform: scale(0.6);
+    filter: invert(1);
+}
+.sci img{
+    transition: 0.2s;
+}
+.sci img:hover{
+    transform: scale(1.5);
+}

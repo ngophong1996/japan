@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+        <div class="bg" id="bgg"></div>
+        <div class="link"><a href="#" class="subLink" target="_blank">EXPLORE</a></div>
+        <header>
+            <a href="#" class="logo"></a>
+            <ul class="nav">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Tems of Use</a></li>
+            </ul>
+        </header>
+        
+        
+        <div class="content">
+            <div class="textBox">
+            </div>
+            <!----
+            <div class="imgBox">
+                <img src="apple.png" class="fruits">
+            </div>-->
+        </div>
+        <ul class="thumb">
+            
+            <li data-text="Tokyo"><div class="item" onclick="changColor('img/tokyo1.jpg'); changeLink('smallSite/tokyo.html');"><div class="smallImage"><img src="small/tokyo.png" ></div>
+                <div class="nameCity"><h2>Tokyo</h2><p>the political and economic center</p></div></div></li>
+            <li data-text="Hokkaido"><div class="item" onclick="changColor('img/osaka1.jpg'); changeLink('smallSite/osaka.html');"><div class="smallImage"><img src="small/osaka.png" ></div>
+                <div class="nameCity"><h2>Osaka</h2><p>the street food capital of Japan</p></div></div></li>
+            <li data-text="Osaka"><div class="item" onclick="changColor('img/kyoto1.jpg'); changeLink('smallSite/kyoto.html');"><div class="smallImage"><img src="small/kyoto.png" ></div>
+                <div class="nameCity"><h2>Kyoto</h2><p>the former capital of Japan</p></div></div></li>
+            <li data-text="Nara"><div class="item" onclick="changColor('img/nara1.jpg'); changeLink('smallSite/nara.html');"><div class="smallImage"><img src="small/nara.png" ></div>
+                <div class="nameCity"><h2>Nara</h2><p>another historic Japanese capital</p></div></div></li>
+        </ul>
+        <ul class="sci">
+            <li><a href="#"><img src="img/facebook.png"></a></li>
+            <li><a href="#"><img src="img/instagram.png"></a></li>
+            <li><a href="#"><img src="img/twitter.png"></a></li>
+        </ul>
+    </section>
+    <script type="text/javascript">
+        // change background
+       function changColor(anything){
+           //document.getElementById("bgg").style.backgroundImage = 'url(anything)';
+          document.querySelector('.bg').style.backgroundImage = "url( " + anything + " )";
+            //bg.tyle.backgroundImage = "url('tokyo.jpg')";
+       }
+       function changeLink(something){
+        document.querySelector('.link').style.opacity = 1;
+        document.querySelector('.subLink').href = something;
+
+       }
+       // function imgSlider(any){
+         //  document.querySelector('.fruits').src = any;
+       // }
+        //function changColor(color){
+          //  document.querySelector('.bg').style.background = color;
+        //}
+
+        //add active class
+        let el = document.querySelectorAll('.thumb li');
+        for(let i=0;i< el.length;i++){
+            el[i].onclick= function(){
+                var c=0;
+                while(c < el.length){
+                    el[c++].className='check';
+
+                }
+                el[i].className='check active';
+            }
+        }
+    </script>
+</body>
+</html>
