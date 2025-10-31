@@ -48,35 +48,184 @@
         </ul>
     </section>
     <script type="text/javascript">
-        // change background
-       function changColor(anything){
-           //document.getElementById("bgg").style.backgroundImage = 'url(anything)';
-          document.querySelector('.bg').style.backgroundImage = "url( " + anything + " )";
-            //bg.tyle.backgroundImage = "url('tokyo.jpg')";
-       }
-       function changeLink(something){
-        document.querySelector('.link').style.opacity = 1;
-        document.querySelector('.subLink').href = something;
+        // City data array
+        const cities = [
+            {
+                name: 'Tokyo',
+                image: 'img/tokyo1.jpg',
+                link: 'smallSite/tokyo.html',
+                description: 'the political and economic center'
+            },
+            {
+                name: 'Osaka', 
+                image: 'img/osaka1.jpg',
+                link: 'smallSite/osaka.html',
+                description: 'the street food capital of Japan'
+            },
+            {
+                name: 'Kyoto',
+                image: 'img/kyoto1.jpg', 
+                link: 'smallSite/kyoto.html',
+                description: 'the former capital of Japan'
+            },
+            {
+                name: 'Nara',
+                image: 'img/nara1.jpg',
+                link: 'smallSite/nara.html', 
+                description: 'another historic Japanese capital'
+            }
+        ];
 
-       }
-       // function imgSlider(any){
-         //  document.querySelector('.fruits').src = any;
-       // }
-        //function changColor(color){
-          //  document.querySelector('.bg').style.background = color;
-        //}
+        let currentCityIndex = -1; // Start with -1 to indicate Japan main page
+        let autoSlideInterval;
+        let isUserInteracting = false;
 
-        //add active class
+        // change background with glitch effect
+        function changColor(anything, withGlitch = false){
+            const bg = document.querySelector('.bg');
+            
+            if(withGlitch) {
+                // Add glitch effect
+                bg.classList.add('glitch');
+                
+                // Remove glitch class after animation
+                setTimeout(() => {
+                    bg.classList.remove('glitch');
+                }, 800);
+            }
+            
+            bg.style.backgroundImage = "url( " + anything + " )";
+        }
+
+        function changeLink(something){
+            document.querySelector('.link').style.opacity = 1;
+            document.querySelector('.subLink').href = something;
+        }
+
+        // Add glitch effect to city name text
+        function addTextGlitch(cityName) {
+            const activeCity = document.querySelector('.thumb li.active .nameCity h2');
+            if(activeCity) {
+                activeCity.classList.add('glitch-text');
+                setTimeout(() => {
+                    activeCity.classList.remove('glitch-text');
+                }, 600);
+            }
+        }
+
+        // Auto slide function
+        function autoSlideToNextCity() {
+            if(isUserInteracting) return;
+            
+            // If this is the first auto slide (currentCityIndex is still -1), start with Tokyo (index 0)
+            if(currentCityIndex === -1) {
+                currentCityIndex = 0;
+            } else {
+                currentCityIndex = (currentCityIndex + 1) % cities.length;
+            }
+            
+            const currentCity = cities[currentCityIndex];
+            
+            // Apply glitch effect and change city
+            changColor(currentCity.image, true);
+            changeLink(currentCity.link);
+            
+            // Update active class
+            const el = document.querySelectorAll('.thumb li');
+            el.forEach((item, index) => {
+                item.className = 'check';
+                if(index === currentCityIndex) {
+                    item.className = 'check active';
+                }
+            });
+            
+            // Add text glitch effect
+            setTimeout(() => {
+                addTextGlitch(currentCity.name);
+            }, 200);
+        }
+
+        // Start auto slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(autoSlideToNextCity, 5000); // 5 seconds
+        }
+
+        // Stop auto slide 
+        function stopAutoSlide() {
+            if(autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        }
+
+        // Reset auto slide
+        function resetAutoSlide() {
+            stopAutoSlide();
+            setTimeout(() => {
+                if(!isUserInteracting) {
+                    startAutoSlide();
+                }
+            }, 10000); // Wait 10 seconds before resuming auto slide
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Keep default Japan background (img/japan1.jpg) - don't set any city as active initially
+            // Hide the EXPLORE link initially
+            document.querySelector('.link').style.opacity = 0;
+
+            // Start auto slide after 5 seconds - will start with first city (Tokyo)
+            setTimeout(startAutoSlide, 5000);
+        });
+
+        //add active class and handle user interaction
         let el = document.querySelectorAll('.thumb li');
         for(let i=0;i< el.length;i++){
             el[i].onclick= function(){
+                // User is interacting
+                isUserInteracting = true;
+                stopAutoSlide();
+                
+                // Remove active class from all items
                 var c=0;
                 while(c < el.length){
                     el[c++].className='check';
-
                 }
+                // Add active class to clicked item
                 el[i].className='check active';
+                
+                // Update current index
+                currentCityIndex = i;
+                
+                // Show the EXPLORE link
+                changeLink(cities[i].link);
+                
+                // Add glitch effect for user interaction
+                setTimeout(() => {
+                    addTextGlitch(cities[i].name);
+                }, 100);
+                
+                // Reset user interaction flag and restart auto slide
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    resetAutoSlide();
+                }, 1000);
             }
+        }
+
+        // Pause auto slide when user hovers over thumbnails
+        const thumbContainer = document.querySelector('.thumb');
+        if(thumbContainer) {
+            thumbContainer.addEventListener('mouseenter', () => {
+                isUserInteracting = true;
+                stopAutoSlide();
+            });
+            
+            thumbContainer.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    startAutoSlide();
+                }, 2000);
+            });
         }
     </script>
 </body>
