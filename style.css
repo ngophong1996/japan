@@ -297,3 +297,535 @@ header .nav li a:hover
         transform: translateY(0);
     }
 }
+
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE FIRST APPROACH
+   ========================================== */
+
+/* Extra Small devices (phones, 0px to 575px) - Default styles above */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575px) {
+    section {
+        padding: 20px;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+    
+    header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    header .logo {
+        font-size: 1.5em;
+        text-align: center;
+    }
+    
+    header .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    header .nav li a {
+        font-size: 0.8em;
+        padding: 6px 10px;
+        margin: 2px;
+    }
+    
+    .content .textBox h2 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+    
+    .content .textBox p {
+        font-size: 0.9em;
+        text-align: center;
+    }
+    
+    .thumb {
+        bottom: 20px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: 100vw;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px 20px;
+        gap: 15px;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+    }
+    
+    .thumb::-webkit-scrollbar {
+        display: none; /* WebKit browsers */
+    }
+    
+    .thumb li {
+        width: 220px;
+        height: 80px;
+        margin: 0;
+        opacity: 0.8;
+        flex-shrink: 0; /* Prevent items from shrinking */
+        scroll-snap-align: center;
+    }
+    
+    .thumb li.active {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    
+    .thumb li img {
+        max-width: 50px;
+    }
+    
+    .thumb .item .smallImage {
+        padding-right: 8px;
+    }
+    
+    .nameCity h2 {
+        font-size: 1.2em;
+    }
+    
+    .nameCity p {
+        font-size: 0.7em;
+    }
+    
+    .link {
+        position: fixed;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1000;
+    }
+    
+    .link a {
+        padding: 10px 20px;
+        font-size: 0.8em;
+    }
+    
+    .sci {
+        right: 10px;
+        top: auto;
+        bottom: 80px;
+        transform: none;
+    }
+    
+    .sci li a {
+        transform: scale(0.4);
+    }
+    
+    .bg {
+        background-position: center center;
+    }
+}
+
+/* Medium devices (tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    section {
+        padding: 40px;
+    }
+    
+    header {
+        padding: 20px 40px;
+    }
+    
+    header .logo {
+        font-size: 1.8em;
+    }
+    
+    header .nav li a {
+        font-size: 0.9em;
+        padding: 7px 12px;
+    }
+    
+    .content .textBox h2 {
+        font-size: 3em;
+        text-align: center;
+    }
+    
+    .thumb {
+        bottom: 30px;
+        flex-direction: row;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100vw;
+        padding: 10px 20px;
+        gap: 12px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .thumb::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .thumb li {
+        width: 200px;
+        height: 90px;
+        margin: 0;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+    
+    .thumb li img {
+        max-width: 55px;
+    }
+    
+    .nameCity h2 {
+        font-size: 1.3em;
+    }
+    
+    .nameCity p {
+        font-size: 0.8em;
+    }
+    
+    .link {
+        position: fixed;
+        bottom: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1000;
+    }
+    
+    .sci {
+        right: 20px;
+    }
+}
+
+/* Large devices (desktops, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    section {
+        padding: 60px;
+    }
+    
+    header {
+        padding: 20px 60px;
+    }
+    
+    header .logo {
+        font-size: 1.9em;
+    }
+    
+    .content .textBox h2 {
+        font-size: 3.5em;
+    }
+    
+    .thumb {
+        bottom: 40px;
+    }
+    
+    .thumb li {
+        width: 220px;
+        height: 95px;
+        margin: 0 8px;
+    }
+    
+    .thumb li img {
+        max-width: 60px;
+    }
+    
+    .nameCity h2 {
+        font-size: 1.4em;
+    }
+    
+    .nameCity p {
+        font-size: 0.9em;
+    }
+    
+    .link {
+        margin-left: 90px;
+        margin-top: 120px;
+    }
+}
+
+/* Extra large devices (large desktops, 992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    section {
+        padding: 80px;
+    }
+    
+    header {
+        padding: 20px 80px;
+    }
+    
+    .thumb li {
+        width: 240px;
+    }
+    
+    .thumb li img {
+        max-width: 65px;
+    }
+    
+    .link {
+        margin-left: 100px;
+        margin-top: 125px;
+    }
+}
+
+/* Extra extra large devices (1200px and up) - Default styles apply */
+@media (min-width: 1200px) {
+    section {
+        padding: 100px;
+    }
+    
+    header {
+        padding: 20px 100px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 767px) and (orientation: landscape) {
+    section {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 10px 20px;
+    }
+    
+    header .logo {
+        font-size: 1.3em;
+    }
+    
+    header .nav li a {
+        font-size: 0.7em;
+        padding: 4px 8px;
+    }
+    
+    .content .textBox h2 {
+        font-size: 2em;
+    }
+    
+    .thumb {
+        bottom: 10px;
+        flex-direction: row;
+        justify-content: flex-start;
+        max-width: 100vw;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 8px 15px;
+        gap: 10px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .thumb::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .thumb li {
+        width: 150px;
+        height: 60px;
+        margin: 0;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+    
+    .thumb li img {
+        max-width: 35px;
+    }
+    
+    .nameCity h2 {
+        font-size: 0.9em;
+    }
+    
+    .nameCity p {
+        font-size: 0.6em;
+    }
+    
+    .link {
+        position: fixed;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 1000;
+    }
+    
+    .link a {
+        padding: 6px 12px;
+        font-size: 0.7em;
+    }
+    
+    .sci {
+        right: 5px;
+        bottom: 50px;
+    }
+    
+    .sci li a {
+        transform: scale(0.3);
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .bg {
+        background-image: url('img/japan1.jpg');
+        background-size: cover;
+    }
+}
+
+/* Touch devices - improve touch targets */
+@media (hover: none) and (pointer: coarse) {
+    .thumb li {
+        min-height: 60px;
+        padding: 10px;
+    }
+    
+    header .nav li a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .link a {
+        min-height: 44px;
+        min-width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .sci li a {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .bg::before {
+        background: linear-gradient(0deg, rgba(0,0,0,0.95) 10%, rgba(0,0,0,0) 100%);
+    }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .bg.glitch {
+        animation: none;
+    }
+    
+    .nameCity h2.glitch-text {
+        animation: none;
+    }
+}
+
+/* Remove all focus outlines for thumbnails when clicking */
+.thumb li {
+    outline: none;
+}
+
+.thumb li:focus {
+    outline: none;
+}
+
+/* Focus styles for other elements - only show when using keyboard */
+header .nav li a:focus-visible,
+.link a:focus-visible,
+.sci li a:focus-visible {
+    outline: 2px solid #BC002D;
+    outline-offset: 2px;
+}
+
+/* Remove focus outline when clicking with mouse */
+header .nav li a:focus:not(:focus-visible),
+.link a:focus:not(:focus-visible),
+.sci li a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Alternative focus indication for thumbnails using visual effects */
+.thumb li:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(188, 0, 45, 0.5);
+    border-radius: 8px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Performance optimizations */
+.bg, .thumb li, .sci li a {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Scroll snapping for smooth mobile experience */
+@media (max-width: 991px) {
+    .thumb {
+        scroll-snap-type: x mandatory;
+        scroll-padding: 20px;
+    }
+    
+    .thumb li {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    
+    /* Add subtle scroll indicators on mobile */
+    .thumb::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 100%;
+        background: linear-gradient(to left, rgba(0,0,0,0.3), transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .thumb::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 100%;
+        background: linear-gradient(to right, rgba(0,0,0,0.3), transparent);
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+/* Mobile swipe gesture improvements */
+@media (hover: none) and (pointer: coarse) {
+    .thumb {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+        scroll-behavior: smooth;
+    }
+    
+    .thumb li {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}

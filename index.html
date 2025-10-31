@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Japan Travel Experience - Explore Tokyo, Osaka, Kyoto & Nara</title>
+    <meta name="description" content="Discover the beauty of Japan - Explore Tokyo, Osaka, Kyoto and Nara with interactive experience">
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="img/japan1.jpg" as="image">
+    <link rel="preload" href="img/tokyo1.jpg" as="image">
+    <link rel="preload" href="img/osaka1.jpg" as="image">
+    <link rel="preload" href="img/kyoto1.jpg" as="image">
+    <link rel="preload" href="img/nara1.jpg" as="image">
 </head>
 <body>
     <section>
         <div class="bg" id="bgg"></div>
-        <div class="link"><a href="#" class="subLink" target="_blank">EXPLORE</a></div>
+        <div class="link"><a href="#" class="subLink" target="_blank" aria-label="Explore selected city">EXPLORE</a></div>
         <header>
-            <a href="#" class="logo"></a>
-            <ul class="nav">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Tems of Use</a></li>
-            </ul>
+            <a href="#" class="logo" aria-label="Japan Travel Home">Japan Travel</a>
+            <nav>
+                <ul class="nav" role="menubar">
+                    <li role="none"><a href="#" class="active" role="menuitem" aria-current="page">Home</a></li>
+                    <li role="none"><a href="#" role="menuitem">About</a></li>
+                    <li role="none"><a href="#" role="menuitem">Contact Us</a></li>
+                    <li role="none"><a href="#" role="menuitem">Terms of Use</a></li>
+                </ul>
+            </nav>
         </header>
         
         
@@ -30,21 +38,36 @@
                 <img src="apple.png" class="fruits">
             </div>-->
         </div>
-        <ul class="thumb">
-            
-            <li data-text="Tokyo"><div class="item" onclick="changColor('img/tokyo1.jpg'); changeLink('smallSite/tokyo.html');"><div class="smallImage"><img src="small/tokyo.png" ></div>
-                <div class="nameCity"><h2>Tokyo</h2><p>the political and economic center</p></div></div></li>
-            <li data-text="Hokkaido"><div class="item" onclick="changColor('img/osaka1.jpg'); changeLink('smallSite/osaka.html');"><div class="smallImage"><img src="small/osaka.png" ></div>
-                <div class="nameCity"><h2>Osaka</h2><p>the street food capital of Japan</p></div></div></li>
-            <li data-text="Osaka"><div class="item" onclick="changColor('img/kyoto1.jpg'); changeLink('smallSite/kyoto.html');"><div class="smallImage"><img src="small/kyoto.png" ></div>
-                <div class="nameCity"><h2>Kyoto</h2><p>the former capital of Japan</p></div></div></li>
-            <li data-text="Nara"><div class="item" onclick="changColor('img/nara1.jpg'); changeLink('smallSite/nara.html');"><div class="smallImage"><img src="small/nara.png" ></div>
-                <div class="nameCity"><h2>Nara</h2><p>another historic Japanese capital</p></div></div></li>
+        <ul class="thumb" role="tablist" aria-label="Japan Cities">
+            <li data-text="Tokyo" role="tab" tabindex="0" aria-label="Tokyo - the political and economic center">
+                <div class="item">
+                    <div class="smallImage"><img src="small/tokyo.png" alt="Tokyo cityscape" loading="lazy"></div>
+                    <div class="nameCity"><h2>Tokyo</h2><p>the political and economic center</p></div>
+                </div>
+            </li>
+            <li data-text="Osaka" role="tab" tabindex="0" aria-label="Osaka - the street food capital of Japan">
+                <div class="item">
+                    <div class="smallImage"><img src="small/osaka.png" alt="Osaka street scene" loading="lazy"></div>
+                    <div class="nameCity"><h2>Osaka</h2><p>the street food capital of Japan</p></div>
+                </div>
+            </li>
+            <li data-text="Kyoto" role="tab" tabindex="0" aria-label="Kyoto - the former capital of Japan">
+                <div class="item">
+                    <div class="smallImage"><img src="small/kyoto.png" alt="Kyoto temple" loading="lazy"></div>
+                    <div class="nameCity"><h2>Kyoto</h2><p>the former capital of Japan</p></div>
+                </div>
+            </li>
+            <li data-text="Nara" role="tab" tabindex="0" aria-label="Nara - another historic Japanese capital">
+                <div class="item">
+                    <div class="smallImage"><img src="small/nara.png" alt="Nara deer park" loading="lazy"></div>
+                    <div class="nameCity"><h2>Nara</h2><p>another historic Japanese capital</p></div>
+                </div>
+            </li>
         </ul>
-        <ul class="sci">
-            <li><a href="#"><img src="img/facebook.png"></a></li>
-            <li><a href="#"><img src="img/instagram.png"></a></li>
-            <li><a href="#"><img src="img/twitter.png"></a></li>
+        <ul class="sci" role="list" aria-label="Social Media Links">
+            <li><a href="#" aria-label="Follow us on Facebook" target="_blank" rel="noopener"><img src="img/facebook.png" alt="Facebook" loading="lazy"></a></li>
+            <li><a href="#" aria-label="Follow us on Instagram" target="_blank" rel="noopener"><img src="img/instagram.png" alt="Instagram" loading="lazy"></a></li>
+            <li><a href="#" aria-label="Follow us on Twitter" target="_blank" rel="noopener"><img src="img/twitter.png" alt="Twitter" loading="lazy"></a></li>
         </ul>
     </section>
     <script type="text/javascript">
@@ -80,9 +103,18 @@
         let autoSlideInterval;
         let isUserInteracting = false;
 
+        // Utility function to validate city index
+        function isValidCityIndex(index) {
+            return index >= 0 && index < cities.length;
+        }
+
         // change background with glitch effect
         function changColor(anything, withGlitch = false){
             const bg = document.querySelector('.bg');
+            if (!bg) {
+                console.error('Background element not found');
+                return;
+            }
             
             if(withGlitch) {
                 // Add glitch effect
@@ -98,8 +130,15 @@
         }
 
         function changeLink(something){
-            document.querySelector('.link').style.opacity = 1;
-            document.querySelector('.subLink').href = something;
+            const linkElement = document.querySelector('.link');
+            const subLinkElement = document.querySelector('.subLink');
+            
+            if (linkElement) {
+                linkElement.style.opacity = 1;
+            }
+            if (subLinkElement) {
+                subLinkElement.href = something;
+            }
         }
 
         // Add glitch effect to city name text
@@ -124,7 +163,17 @@
                 currentCityIndex = (currentCityIndex + 1) % cities.length;
             }
             
+            // Validate index
+            if (!isValidCityIndex(currentCityIndex)) {
+                console.error('Invalid city index:', currentCityIndex);
+                currentCityIndex = 0; // Fallback to first city
+            }
+            
             const currentCity = cities[currentCityIndex];
+            if (!currentCity) {
+                console.error('City not found at index:', currentCityIndex);
+                return;
+            }
             
             // Apply glitch effect and change city
             changColor(currentCity.image, true);
@@ -132,6 +181,11 @@
             
             // Update active class
             const el = document.querySelectorAll('.thumb li');
+            if (el.length === 0) {
+                console.error('No thumbnail elements found');
+                return;
+            }
+            
             el.forEach((item, index) => {
                 item.className = 'check';
                 if(index === currentCityIndex) {
@@ -147,6 +201,10 @@
 
         // Start auto slide
         function startAutoSlide() {
+            // Clear any existing interval first to prevent multiple timers
+            if(autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
             autoSlideInterval = setInterval(autoSlideToNextCity, 5000); // 5 seconds
         }
 
@@ -154,6 +212,7 @@
         function stopAutoSlide() {
             if(autoSlideInterval) {
                 clearInterval(autoSlideInterval);
+                autoSlideInterval = null; // Clear the reference
             }
         }
 
@@ -164,7 +223,14 @@
                 if(!isUserInteracting) {
                     startAutoSlide();
                 }
-            }, 10000); // Wait 10 seconds before resuming auto slide
+            }, 5000); // Wait 5 seconds before resuming auto slide
+        }
+
+        // Start auto slide immediately without delay and without checking user interaction
+        function startAutoSlideImmediately() {
+            stopAutoSlide();
+            // Start immediately without checking isUserInteracting flag
+            autoSlideInterval = setInterval(autoSlideToNextCity, 5000);
         }
 
         // Initialize
@@ -196,6 +262,9 @@
                 // Update current index
                 currentCityIndex = i;
                 
+                // Change background image with glitch effect
+                changColor(cities[i].image, true);
+                
                 // Show the EXPLORE link
                 changeLink(cities[i].link);
                 
@@ -204,11 +273,13 @@
                     addTextGlitch(cities[i].name);
                 }, 100);
                 
-                // Reset user interaction flag and restart auto slide
+                // Start auto slide immediately 
+                startAutoSlideImmediately();
+                
+                // Reset user interaction flag
                 setTimeout(() => {
                     isUserInteracting = false;
-                    resetAutoSlide();
-                }, 1000);
+                }, 500);
             }
         }
 
@@ -223,10 +294,237 @@
             thumbContainer.addEventListener('mouseleave', () => {
                 setTimeout(() => {
                     isUserInteracting = false;
-                    startAutoSlide();
-                }, 2000);
+                    resetAutoSlide();
+                }, 1000);
+            });
+
+            // Touch events for mobile with swipe detection
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isScrolling = false;
+
+            thumbContainer.addEventListener('touchstart', (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    isUserInteracting = true;
+                    stopAutoSlide();
+                    touchStartX = e.changedTouches[0].screenX;
+                    isScrolling = false;
+                }
+            });
+
+            thumbContainer.addEventListener('touchmove', (e) => {
+                isScrolling = true;
+            });
+
+            thumbContainer.addEventListener('touchend', (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    touchEndX = e.changedTouches[0].screenX;
+                } else {
+                    return; // Exit if no touch data
+                }
+                
+                // Only handle swipe if not scrolling the container
+                if (!isScrolling && Math.abs(touchEndX - touchStartX) > 50) {
+                    handleSwipe();
+                }
+                
+                setTimeout(() => {
+                    isUserInteracting = false;
+                    resetAutoSlide();
+                }, 1500);
+            });
+
+            // Handle swipe gestures
+            function handleSwipe() {
+                const currentActive = document.querySelector('.thumb li.active');
+                const thumbItems = document.querySelectorAll('.thumb li');
+                let currentIndex = currentActive ? Array.from(thumbItems).indexOf(currentActive) : -1;
+
+                if (touchEndX < touchStartX) {
+                    // Swipe left - next city
+                    if (currentIndex < thumbItems.length - 1 && currentIndex !== -1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                } else if (touchEndX > touchStartX) {
+                    // Swipe right - previous city  
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                    } else if (currentIndex === -1) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex = thumbItems.length - 1;
+                    }
+                }
+
+                if (currentIndex !== -1) {
+                    activateCity(currentIndex);
+                    // Scroll the selected item into view
+                    thumbItems[currentIndex].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            }
+        }
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            const thumbItems = document.querySelectorAll('.thumb li');
+            const currentActive = document.querySelector('.thumb li.active');
+            let currentIndex = currentActive ? Array.from(thumbItems).indexOf(currentActive) : -1;
+
+            switch(e.key) {
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    isUserInteracting = true;
+                    stopAutoSlide();
+                    
+                    if(currentIndex > 0) {
+                        currentIndex--;
+                    } else if(currentIndex === -1) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex = thumbItems.length - 1;
+                    }
+                    
+                    activateCity(currentIndex);
+                    thumbItems[currentIndex].focus();
+                    resetAutoSlide();
+                    break;
+
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    isUserInteracting = true;
+                    stopAutoSlide();
+                    
+                    if(currentIndex < thumbItems.length - 1 && currentIndex !== -1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                    
+                    activateCity(currentIndex);
+                    thumbItems[currentIndex].focus();
+                    resetAutoSlide();
+                    break;
+
+                case 'Enter':
+                case ' ':
+                    if(document.activeElement.closest('.thumb li')) {
+                        e.preventDefault();
+                        const focusedIndex = Array.from(thumbItems).indexOf(document.activeElement);
+                        if(focusedIndex !== -1) {
+                            activateCity(focusedIndex);
+                        }
+                    }
+                    break;
+
+                case 'Escape':
+                    // Return to Japan main page
+                    returnToMainPage();
+                    break;
+            }
+        });
+
+        // Helper function to activate a city
+        function activateCity(index) {
+            const el = document.querySelectorAll('.thumb li');
+            const city = cities[index];
+            
+            // Remove active class from all items
+            el.forEach(item => item.className = 'check');
+            // Add active class to selected item
+            el[index].className = 'check active';
+            
+            // Update current index
+            currentCityIndex = index;
+            
+            // Change background and link
+            changColor(city.image, true);
+            changeLink(city.link);
+            
+            // Add glitch effect
+            setTimeout(() => {
+                addTextGlitch(city.name);
+            }, 100);
+            
+            // Set focus for screen readers
+            el[index].setAttribute('aria-selected', 'true');
+            el.forEach((item, i) => {
+                if(i !== index) {
+                    item.setAttribute('aria-selected', 'false');
+                }
             });
         }
+
+        // Helper function to return to main Japan page
+        function returnToMainPage() {
+            isUserInteracting = true;
+            stopAutoSlide();
+            
+            // Remove active class from all cities
+            const el = document.querySelectorAll('.thumb li');
+            el.forEach(item => {
+                item.className = 'check';
+                item.setAttribute('aria-selected', 'false');
+            });
+            
+            // Reset to Japan main background
+            changColor('img/japan1.jpg', true);
+            document.querySelector('.link').style.opacity = 0;
+            
+            // Reset current index to indicate main page
+            currentCityIndex = -1;
+            
+            // Restart auto slide after delay
+            setTimeout(() => {
+                isUserInteracting = false;
+                resetAutoSlide();
+            }, 2000);
+        }
+
+        // Performance optimization - Preload images
+        function preloadImages() {
+            cities.forEach(city => {
+                const img = new Image();
+                img.src = city.image;
+            });
+        }
+
+        // Initialize preloading
+        document.addEventListener('DOMContentLoaded', preloadImages);
+
+        // Handle window resize for responsive adjustments
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Force glitch effect removal on resize to prevent visual issues
+                const bg = document.querySelector('.bg');
+                const textElements = document.querySelectorAll('.nameCity h2');
+                
+                bg.classList.remove('glitch');
+                textElements.forEach(el => el.classList.remove('glitch-text'));
+            }, 250);
+        });
+
+        // Handle visibility change (tab switching)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopAutoSlide();
+            } else {
+                setTimeout(() => {
+                    if (!isUserInteracting) {
+                        resetAutoSlide();
+                    }
+                }, 1000);
+            }
+        });
     </script>
 </body>
 </html>
